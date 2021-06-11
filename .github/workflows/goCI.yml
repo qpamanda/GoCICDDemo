@@ -48,5 +48,7 @@ jobs: #Job to exevute on event
       run: |
         go get github.com/franela/goblin # Add package for Goblin testing
         go get github.com/tebeka/go2xunit # Add package for conversion
+        go mod init
+        go mod tidy
         go test -v # Command to run go test
         
