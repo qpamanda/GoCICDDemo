@@ -51,4 +51,5 @@ jobs: #Job to exevute on event
         go test -v # Command to run go test
         go test -v | go2xunit > report.xml # run test again and output as report.xml (to show the effect)
         ls # verify that the report is indeed created
+        cat report.xml # show content of xml file created
         
