@@ -3,7 +3,7 @@ name: Release of Go Code
 on: 
   create:
     tags:
-      -v*
+      - v*
       
 jobs:
   release:
