@@ -17,7 +17,7 @@ jobs: #Job to exevute on event
       uses: actions/setup-go@v2.1.3
       with:
         # The Go version to download (if necessary) and use. Supports semver spec and ranges.
-        go-version: 1.16.5 # optional        
+        go-version: 1.13.7 # optional        
         
     - name: Show Go version #verify that go is installed
       run: go version #show go version
@@ -47,8 +47,6 @@ jobs: #Job to exevute on event
     - name: Install dependencies for GO
       run: |
         go get github.com/franela/goblin # Add package for Goblin testing
-        go get github.com/tebeka/go2xunit # Add package for conversion
-        go mod init
-        go mod tidy
+        go get github.com/tebeka/go2xunit # Add package for conversion       
         go test -v # Command to run go test
         
