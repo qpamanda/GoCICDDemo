@@ -19,6 +19,14 @@ jobs: #Job to exevute on event
         # The Go version to download (if necessary) and use. Supports semver spec and ranges.
         go-version: 1.16.5 # optional        
         
-    - name: show Go version #verify that go is installed
+    - name: Show Go version #verify that go is installed
       run: go version #show go version
+      
+    - name: Checkout our codes #bring repo code to virtual environment
+      uses: actions/checkout@v2
+      
+    - name: Check file system #check virtual environment has files
+      run: |
+        ls
+        cat calc.go #prints the content of calc.go
         
