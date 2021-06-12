@@ -19,7 +19,7 @@ func TestCalc(t *testing.T) {
 		gob.It("should subtract two numbers", func() {
 			gob.Assert(Subtract(1, 1)).Equal(0)
 			gob.Assert(Subtract(10, 5)).Equal(5)
-			gob.Assert(Subtract(-5, -5)).Equal(1)
+			gob.Assert(Subtract(-5, -5)).Equal(0)
 		})
 
 		gob.It("should multiply two numbers", func() {
