@@ -89,7 +89,8 @@ jobs: # Job to execute on event
         labels: workflow-failed
         body: Workflow failed for commit ${{github.sha}}
 
-    - name: Email job done # Send an email to inform that job is done.
+    - if: always() # Always do it
+      name: Email job done # Send an email to inform that job is done.
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com
