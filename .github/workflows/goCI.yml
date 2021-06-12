@@ -93,7 +93,7 @@ jobs: # Job to execute on event
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com
-        port: 465
+        server_port: 465
         username: ${{ secrets.MAIL_USERNAME }}
         password: ${{ secrets.MAIL_PASSWORD }}
         subject: Workflow finished
