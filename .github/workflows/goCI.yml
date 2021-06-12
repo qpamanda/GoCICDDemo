@@ -1,4 +1,4 @@
-name: CI setup for Go # Name the workflow
+name: CI Setup for Go # Name the workflow
 on: # On event keyword
     push:
       branches: [main] # Identifying branch
@@ -96,7 +96,7 @@ jobs: # Job to execute on event
         server_port: 465
         username: ${{ secrets.MAIL_USERNAME }}
         password: ${{ secrets.MAIL_PASSWORD }}
-        subject: Github - Workflow finished
-        body: Job completed (status - ${{ job.status }}) # Print job status in the email body
+        subject: Github - Workflow finished for - CI Setup for Go 
+        body: Job completed (${{ job.status }}) # Print job status in the email body
         to: ${{ secrets.EMAIL_TO }}
         from: ${{ secrets.EMAIL_FROM }}
