@@ -89,14 +89,14 @@ jobs: # Job to execute on event
         labels: workflow-failed
         body: Workflow failed for commit ${{github.sha}}
 
-    - name: Send some mail
-      uses: wadeww/send-email-action@master
+    - name: Email job done
+      uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com
         port: 465
-        username: ${{secrets.MAIL_USERNAME}}
-        password: ${{secrets.MAIL_PASSWORD}}
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
         subject: Workflow finished
-        body: Job completed ${{job.status}}
-        to: qpapple@yahoo.com
-        from: Me
+        body: Job completed ${{ job.status }}
+        to: ${{ secrets.EMAIL_TO }}
+        from: ${{ secrets.EMAIL_FROM }}
