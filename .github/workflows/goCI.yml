@@ -102,10 +102,12 @@ jobs: # Job to execute on event
         to: ${{ secrets.EMAIL_TO }}
         from: ${{ secrets.EMAIL_FROM }}
 
-    - name: Whatsapp Notification
-      id: whatsapp-notify
+    - name: Whatsapp Push Notification        
+      uses: mdb571/wa-action@master
+      with:
+        from: ${{ secrets.FROM_WHATSAPP_NO }}
+        to: ${{ secrets.TO_WHATSAPP_NO }}
       env:
-        account_sid: ${{ secrets.TWILIO_ACCT_ID }}
-        auth_token: ${{ secrets.TWILIO_AUTH_TOKEN }}
-        to_whatsapp_no: ${{ secrets.TO_WHATSAPP_NO }}
-      uses: ishween/whatsapp-push-notify-action@master
+        TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCT_ID }}
+        TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+ 
