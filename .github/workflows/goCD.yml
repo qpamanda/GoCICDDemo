@@ -9,7 +9,7 @@ jobs:
     name: Release on Github
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
+    - name: Checkout Code
       uses: actions/checkout@v2
         
     - name: Validate the Go code
@@ -17,21 +17,21 @@ jobs:
       with:
         args: check
          
-    - name: Release the Go code
+    - name: Release the Go Code
       uses: goreleaser/goreleaser-action@v2.6.1
       with:
         args: release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      
-    - name: Email job done # Send an email to inform that job is done.
+    - name: Email Job Done # Send an email to inform that job is done.
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com
         server_port: 465
         username: ${{ secrets.MAIL_USERNAME }}
         password: ${{ secrets.MAIL_PASSWORD }}
-        subject: Github - Workflow finished for - Release of Go code 
+        subject: Github - Workflow finished for - Release of Go Code 
         body: Job completed (${{ job.status }}) # Print job status in the email body
         to: ${{ secrets.EMAIL_TO }}
         from: ${{ secrets.EMAIL_FROM }}
