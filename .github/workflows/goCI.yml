@@ -10,43 +10,43 @@ jobs: # Job to execute on event
     name: My Job
     runs-on: ubuntu-latest # Specify OS in virtual machine
     steps:
-    - name: Print a greeting
+    - name: Print a Greeting
       run: |
         ls
         echo Hello there! This is my first run job! # Run terminal command
         
-    - name: Setup Go environment
+    - name: Setup Go Environment
       uses: actions/setup-go@v2.1.3
       with:
         # The Go version to download (if necessary) and use. Supports semver spec and ranges.
         go-version: 1.13.7 # optional        
         
-    - name: Show Go version # Verify that go is installed
+    - name: Show Go Version # Verify that go is installed
       run: go version # Show go version
       
-    - name: Checkout our codes # Bring repo code to virtual environment
+    - name: Checkout Codes # Bring repo code to virtual environment
       uses: actions/checkout@v2
       
-    - name: Check file system # Check virtual environment has files
+    - name: Check File System # Check virtual environment has files
       run: |
         ls
         cat calc.go #prints the content of calc.go
         
-    - name: Checkout private repo remotely
+    - name: Checkout Private Repo Remotely
       uses: actions/checkout@v2
       with:
         repository: lowkh2/GoSchoolRemoteExample # The hidden repo i am trying to access
         path: virtualRepoFolder # Folder to save to in my virtual env
         token: ${{ secrets.GO_SECRET }} # Pass to enter remote hidden repo
         
-    - name: Show hidden files
+    - name: Show Hidden Files
       run: |
         cd virtualRepoFolder # To access folder of interest in my virtual env
         ls
         cat myText.txt # Show content of file of interest
         cd ..
     
-    - name: Install dependencies for GO
+    - name: Install Dependencies for Go
       run: |
         go get github.com/franela/goblin # Add package for Goblin testing
         go get github.com/tebeka/go2xunit # Add package for conversion       
@@ -68,7 +68,7 @@ jobs: # Job to execute on event
     - name: Prepare Documents
       run: mv report.xml ./upload
       
-    - name: Prepare artifacts
+    - name: Prepare Artifacts
       uses: actions/upload-artifact@v2
       with: 
         name: assetDocuments
@@ -90,7 +90,7 @@ jobs: # Job to execute on event
         body: Workflow failed for commit ${{github.sha}}
 
     - if: always() # Always do it
-      name: Email job done # Send an email to inform that job is done.
+      name: Email Job Done # Send an email to inform that job is done.
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com
@@ -101,3 +101,11 @@ jobs: # Job to execute on event
         body: Job completed (${{ job.status }}) # Print job status in the email body
         to: ${{ secrets.EMAIL_TO }}
         from: ${{ secrets.EMAIL_FROM }}
+
+    - name: Whatsapp Notification
+      id: whatsapp-notify
+      env:
+        account_sid: ${{ secrets.TWILIO_ACCT_ID }}
+        auth_token: ${{ secrets.TWILIO_AUTH_TOKEN }}
+        to_whatsapp_no: ${{ secrets.TO_WHATSAPP_NO }}
+      uses: ishween/whatsapp-push-notify-action@master
